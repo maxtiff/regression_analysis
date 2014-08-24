@@ -5,9 +5,6 @@ date: "Friday, August 22, 2014"
 output: html_document
 ---
 
-# The Impact of Transmission Type on Fuel Efficiency of Automobiles
-### Author: Travis May
-
 ## Executive Summary
 This report summarizes the impact of transmission type on fuel efficiency. The author uses a data set that Motor Trend Magazine construced in 1974, concerning the performance and attributes of 32 different models of vehicles across 11 variables. The study attempts to answer two questions as directed by Motor Trend Magazine: 1) is an automatic or manual transmission better for mpg and 2) what is the MPG difference between automatic and manual transmissions?
 
@@ -67,6 +64,7 @@ The expanded model examines how carbeurators, cylinders and transmission can aff
 summary(model2)
 ```
 
+# Appendix
 ## Residual Analysis
 ```{r, echo=FALSE}
 
