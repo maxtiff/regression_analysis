@@ -2,13 +2,15 @@
 title: "The Impact of Transmission Type on Fuel Efficiency"
 author: "Travis May"
 date: "Friday, August 22, 2014"
-output: html_document
+output: pdf_document
 ---
 
 ## Executive Summary
 This report summarizes the impact of transmission type on fuel efficiency. The author uses a data set that Motor Trend Magazine construced in 1974, concerning the performance and attributes of 32 different models of vehicles across 11 variables. The study attempts to answer two questions as directed by Motor Trend Magazine: 1) is an automatic or manual transmission better for mpg and 2) what is the MPG difference between automatic and manual transmissions?
 
 Using a linear model that measures the effect of the quantity of carbuerators, the number of cylinders, and whether the automobile has an automatic or manual transmission against the estimated mpg of a vehicle, the author finds that 1) a manual transmission is better for gas mileage and 2) the difference between the two types of transmissions is 4.243 mpg.
+
+All referenced figures are located in the appendix.
 
 
 ```{r, echo=FALSE}
@@ -19,11 +21,7 @@ levels(mtcars$am) <- c("Automatic", "Manual")
 ```
 
 ## Analysis
-A cursory glance at the data shows that cars with manual transmissions get better gas mileage when compared to cars with automatic transmissions as illustrated by the following box plot.
-
-```{r, fig.width=7, fig.height=6,echo=FALSE}
-boxplot(mpg ~ am, col=c('red','blue'),names,data=mtcars, main = 'Car Mileage Data',xlab='Automatic vs. Manual Transmission',ylab='Miles Per Gallon')
-```
+A cursory glance at the data shows that cars with manual transmissions get better gas mileage when compared to cars with automatic transmissions as illustrated by the box plot in figure 1.
 
 A t-test can further illuminate this fact:
 ```{r, echo=FALSE}
@@ -31,18 +29,15 @@ aggregate(mpg~am, data = mtcars, mean)
 ```
 
 ### Regression Analysis
-The initial linear model examines the interaction between transmission type and estimated milage per gallon, where 'mpg' represents miles per gallon and am is a dummy variable where a 1 represents a manual transmission .
+The initial linear model examines the interaction between transmission type and estimated milage per gallon, where 'mpg' represents miles per gallon and am is a dummy variable where a 1 represents a manual transmission.
 
-```{r}
+```{r, echo=FALSE}
 
 model <- lm(mpg ~ am, data=mtcars)
 
 ```
 
-Vehicles with manual transmissions get 7.24 more miles per gallon on average. The initial model can explain approximately 33.8 percent of the variation in mpg. This isn't a particularly helpful model. It is necessary to investigate other variables.
-```{r, echo=FALSE}
-summary(model)
-```
+According to the summary (Figure 2) vehicles with manual transmissions get 7.24 more miles per gallon on average. The initial model can explain approximately 33.8 percent of the variation in mpg. This isn't a particularly helpful model. It is necessary to investigate other variables.
 
 ## Anova analysis:
 An anova analysis is run to determine a model with a better fit.
@@ -58,13 +53,25 @@ anova(model,model2,model3)
 The second model is chosen for its significance.
 
 ## Multivariate model:
-The expanded model examines how carbeurators, cylinders and transmission can affect the estimated gas mileage of an automobile. As evident below, this model explains approximately 80 percent of the variation in gas mileage. With the addition of cylinders and carbeurators as independent variables, the effect of transmission is significantly reduced; from 7 mpg to 4 mpg.
+The expanded model examines how carbeurators, cylinders and transmission can affect the estimated gas mileage of an automobile. As evident in Figure 3, this model explains approximately 80 percent of the variation in gas mileage. With the addition of cylinders and carbeurators as independent variables, the effect of transmission is significantly reduced; from 7 mpg to 4 mpg.
+
+# Appendix
+
+## Figure 1
+```{r, fig.width=7, fig.height=6,echo=FALSE}
+boxplot(mpg ~ am, col=c('red','blue'),names,data=mtcars, main = 'Car Mileage Data',xlab='Automatic vs. Manual Transmission',ylab='Miles Per Gallon')
+```
+
+## Figure 2
+```{r, echo=FALSE}
+summary(model)
+```
+## Figure 3
 ```{r, echo=FALSE}
 
 summary(model2)
 ```
 
-# Appendix
 ## Residual Analysis
 ```{r, echo=FALSE}
 
