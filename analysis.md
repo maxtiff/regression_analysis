@@ -9,28 +9,18 @@ output: html_document
 This report summarizes the impact of transmission type on fuel efficiency. The author uses a data set that Motor Trend Magazine construced in 1974, concerning the performance and attributes of 32 different models of vehicles across 11 variables. The study attempts to answer two questions as directed by Motor Trend Magazine: 1) is an automatic or manual transmission better for mpg and 2) what is the MPG difference between automatic and manual transmissions?
 
 
-```{r, echo=FALSE}
-data(mtcars)
-```
 
 
 
-```{r, echo=FALSE}
-boxplot(mpg ~ am, col=c('red','blue'),names,data=mtcars, main = 'Car Mileage Data',xlab='Automatic(0) vs. Manual Transmission (1)',ylab='Miles Per Gallon')
-```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
 
 ### Regression Analysis
 The initial model examines the interaction between transmission type and estimated milage per gallon.
 
-```{r}
 
+```r
 model <- lm(mpg ~ am, data=mtcars)
-
 ```
 
-```{r, echo=FALSE}
-
-par(mfrow=c(2,2))
-plot(model)
-
-```
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
